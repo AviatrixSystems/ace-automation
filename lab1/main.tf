@@ -1,3 +1,17 @@
+terraform {
+  required_providers {
+    aviatrix = {
+      source  = "aviatrixsystems/aviatrix"
+      version = "~> 3.0"
+    }
+  }
+}
+provider "aviatrix" {
+  controller_ip           = var.controller_ip
+  username                = "admin"
+  password                = var.password
+  skip_version_validation = false
+}
 module "us_east_1_spoke" {
   source           = "terraform-aviatrix-modules/mc-spoke/aviatrix"
   version          = "8.0.0"
