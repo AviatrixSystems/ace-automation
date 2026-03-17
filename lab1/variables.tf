@@ -15,10 +15,8 @@ variable "account_name_aws" {
 
 variable "us_east_1_vpc_id" {
   description = "The VPC ID for the us-east-1 region"
-default     = "vpc-05395dc11b0ccf274"
 }
 
 variable "us_west_2_vpc_id" {
   description = "The VPC ID for the us-west-2 region"
-default     = "vpc-0f9456626d18f89e51"
 }
