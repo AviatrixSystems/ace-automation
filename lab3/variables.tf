@@ -1,45 +1,20 @@
-data "terraform_remote_state" "lab1" {
-  backend = "remote"
-  config = {
-    organization = "AVXUseCases"
-    workspaces = {
-      name = "ace-automation-lab1"
-    }
-  }
+variable "controller_ip" {
+  description = "The Aviatrix controller eip"
 }
 
-module "backbone" {
-  source  = "terraform-aviatrix-modules/backbone/aviatrix"
-  version = "8.0.0"
-  global_settings = {
-    transit_ha_gw = false
-  }
-  transit_firenet = {
-    aws_us_east_1 = {
-      transit_name        = "transit-aws-us-east-1"
-      transit_account     = var.account_name_aws
-      transit_cloud       = "aws"
-      transit_cidr        = "10.1.2.0/23"
-      transit_region_name = "us-east-1"
-      transit_asn         = 64512
-    },
-    aws_us_west_2 = {
-      transit_name        = "transit-aws-us-west-2"
-      transit_account     = var.account_name_aws
-      transit_cloud       = "aws"
-      transit_cidr        = "10.2.2.0/23"
-      transit_region_name = "us-west-2"
-      transit_asn         = 64513
-    }
-  }
+variable "password" {
+  description = "The Aviatrix platform student password"
 }
 
-resource "aviatrix_spoke_transit_attachment" "us_east_1" {
-  spoke_gw_name   = var.us_east_1_spoke_gw_name
-  transit_gw_name = module.backbone.transit["aws_us_east_1"].transit_gateway.gw_name
+variable "account_name_aws" {
+  description = "The onboarded Aviatrix access account name for AWS"
+  default     = "aws-account"
 }
 
-resource "aviatrix_spoke_transit_attachment" "us_west_2" {
-  spoke_gw_name   = var.us_west_2_spoke_gw_name
-  transit_gw_name = module.backbone.transit["aws_us_west_2"].transit_gateway.gw_name
+variable "us_east_1_vpc_id" {
+  type = string
+}
+
+variable "us_west_2_vpc_id" {
+  type = string
 }
