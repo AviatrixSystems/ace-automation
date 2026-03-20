@@ -35,11 +35,13 @@ module "backbone" {
 }
 
 resource "aviatrix_spoke_transit_attachment" "us_east_1" {
-  spoke_gw_name   = data.terraform_remote_state.lab1.outputs.us_east_1_spoke.gw_name
+  spoke_gw_name   = var.us_east_1_spoke_gw_name
   transit_gw_name = module.backbone.transit["aws_us_east_1"].transit_gateway.gw_name
 }
 
 resource "aviatrix_spoke_transit_attachment" "us_west_2" {
-  spoke_gw_name   = data.terraform_remote_state.lab1.outputs.us_west_2_spoke.gw_name
+  spoke_gw_name   = var.us_west_2_spoke_gw_name
+  transit_gw_name = module.backbone.transit["aws_us_west_2"].transit_gateway.gw_name
+}
   transit_gw_name = module.backbone.transit["aws_us_west_2"].transit_gateway.gw_name
 }
