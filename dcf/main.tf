@@ -3,7 +3,7 @@ locals {
   "aviatrix.com",
   "*.amazonaws.com",
   "cloud.google.com",
-  "*.microsoft.com"
+  "*.microsoft.com"l
 ]
 }
 
