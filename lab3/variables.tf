@@ -18,3 +18,13 @@ variable "us_east_1_vpc_id" {
 variable "us_west_2_vpc_id" {
   type = string
 }
+
+variable "us_east_1_spoke_gw_name" {
+  type        = string
+  description = "The gateway name of the us-east-1 spoke"
+}
+
+variable "us_west_2_spoke_gw_name" {
+  type        = string
+  description = "The gateway name of the us-west-2 spoke"
+}
